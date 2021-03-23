@@ -2,6 +2,7 @@ package com.improvement.motivation.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import android.widget.LinearLayout
 import com.improvement.motivation.R
 import com.improvement.motivation.anim.ResizeAnimation
@@ -13,14 +14,16 @@ class AchievementRateBar @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.achievement_rate_bar, this)
-        setRateBarHeight(1.0)
     }
+    fun setRate(rate:Double){
 
-    fun setRateBarHeight(value:Double){
         val lp = ID_RATE_BAR.layoutParams
         lp?.let {
+            val rateWidth = width * (rate /100)
+
+            System.out.println(width)
             ID_RATE_BAR.animation = ResizeAnimation(ID_RATE_BAR,
-                lp.height.toFloat(),lp.height.toFloat(),value.toFloat(),lp.width.toFloat(),1000)
+                    lp.height.toFloat(),lp.height.toFloat(),rateWidth.toFloat(),lp.width.toFloat(),1000)
         }
     }
 }
