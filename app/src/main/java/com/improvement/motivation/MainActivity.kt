@@ -10,25 +10,29 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val goals = ArrayList<Goal>()
+    private val goalAdapter = GoalAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        goals.add(Goal("test1","2021.03.21","2021.03.21",10.0, Cstnt.STATUS.PROGRESS))
-        goals.add(Goal("test2","2021.03.21","2021.03.21",70.0, Cstnt.STATUS.PROGRESS))
-        goals.add(Goal("test3","2021.03.21","2021.03.21",70.0, Cstnt.STATUS.PROGRESS))
-        goals.add(Goal("test4","2021.03.21","2021.03.21",70.0, Cstnt.STATUS.PROGRESS))
-        goals.add(Goal("test5","2021.03.21","2021.03.21",100.0, Cstnt.STATUS.PROGRESS))
+        goals.add(Goal("test1","2021.03.21","2021.05.22",10.0, Cstnt.STATUS.PROGRESS))
+        goals.add(Goal("test2","2021.03.21","2021.05.22",70.0, Cstnt.STATUS.PROGRESS))
+        goals.add(Goal("test3","2021.03.21","2021.05.22",70.0, Cstnt.STATUS.PROGRESS))
+        goals.add(Goal("test4","2021.03.21","2021.05.22",70.0, Cstnt.STATUS.PROGRESS))
+        goals.add(Goal("test5","2021.03.21","2021.05.22",100.0, Cstnt.STATUS.PROGRESS))
         goals.add(Goal("test6","2021.03.21","2021.03.21",50.0, Cstnt.STATUS.PROGRESS))
         goals.add(Goal("test7","2021.03.21","2021.03.21",35.0, Cstnt.STATUS.PROGRESS))
         goals.add(Goal("test8","2021.03.21","2021.03.21",20.0, Cstnt.STATUS.PROGRESS))
         goals.add(Goal("test9","2021.03.21","2021.03.21",80.0, Cstnt.STATUS.PROGRESS))
 
-        var goalAdapter = GoalAdapter(this)
+        ID_GOAL_LIST_VIEW.adapter = goalAdapter
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         goalAdapter.goals = goals
         goalAdapter.notifyDataSetChanged()
-
-        ID_GOAL_LIST_VIEW.adapter = goalAdapter
     }
 }
